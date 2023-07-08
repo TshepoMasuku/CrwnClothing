@@ -4,14 +4,11 @@ import {
   createUserDocumentFromAuth,
 } from "../utils/firebase/firebase.util";
 
-// This is the actual value, that you want to access.
 export const UserContext = createContext({
   currentUser: null,
   setCurrentUser: () => null,
 });
 
-// This is the component that you wrap other components
-// with in-order to give access to UserContext.
 export const UserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const value = { currentUser, setCurrentUser };

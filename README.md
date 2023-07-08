@@ -1,4 +1,4 @@
-# Getting Started with this Create React App aka Crown-Clothing
+# Getting Started with this Create React App for CrwnClothing
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 

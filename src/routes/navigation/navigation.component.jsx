@@ -15,15 +15,8 @@ import {
 
 const Navigation = () => {
   const { isCartOpen } = useContext(CartContext);
-  const {
-    currentUser,
-    // setCurrentUser
-  } = useContext(UserContext);
-
-  const handleSignOut = async () => {
-    await signOutUser();
-    // setCurrentUser(null);
-  };
+  const { currentUser } = useContext(UserContext);
+  const handleSignOut = async () => await signOutUser();
 
   return (
     <Fragment>

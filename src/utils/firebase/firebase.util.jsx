@@ -1,4 +1,3 @@
-// Import the functions you need from the SDKs you need
 import { initializeApp } from "firebase/app";
 import {
   getFirestore,
@@ -21,8 +20,6 @@ import {
   onAuthStateChanged,
 } from "firebase/auth";
 
-// Your web app's Firebase configuration
-// For Firebase JS SDK v7.20.0 and later, measurementId is optional
 const firebaseConfig = {
   apiKey: "AIzaSyDz3fN7mEME6yzUwxrcVBXZLSwiQQJvDEA",
   authDomain: "crwn-clothing-cded3.firebaseapp.com",
@@ -35,8 +32,6 @@ const firebaseConfig = {
   measurementId: "G-1WMT55XWX2",
 };
 
-// Initialize Firebase
-// eslint-disable-next-line
 const firebaseApp = initializeApp(firebaseConfig);
 
 const googleProvider = new GoogleAuthProvider();
@@ -83,8 +78,6 @@ export const createUserDocumentFromAuth = async (userAuth, additionalInfo) => {
 
   const userDocRef = doc(db, "users", userAuth.uid);
   const userSnapshot = await getDoc(userDocRef);
-  // console.log('userDocRef :>> ', userDocRef);
-  // console.log('userSnapshot :>> ', userSnapshot);
 
   if (!userSnapshot.exists()) {
     const { displayName, email } = userAuth;

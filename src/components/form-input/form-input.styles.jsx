@@ -28,8 +28,9 @@ export const FrmInputLabel = styled.label`
   top: 10px;
   transition: 300ms ease all;
 
-  /* &.shrink {@include shrinkLabel()} */
   ${({ shrink }) => shrink && ShrinkLabelStyles}
+  /* What the above string lateral is basically doing when taking ~shrink~ */
+  /* ${(props) => props.shrink && ShrinkLabelStyles} */
 `;
 
 export const FrmInput = styled.input`
@@ -50,7 +51,6 @@ export const FrmInput = styled.input`
   }
 
   &:focus ~ ${FrmInputLabel} {
-    /* @include shrinkLabel(); */
     ${ShrinkLabelStyles}
   }
 `;
