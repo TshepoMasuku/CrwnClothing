@@ -23,6 +23,12 @@ export const NavLinks = styled.div`
   justify-content: flex-end;
 `;
 
+export const NavUserName = styled.div`
+  padding: 8px;
+  text-decoration: underline;
+  cursor: pointer;
+`;
+
 export const NavLink = styled(Link)`
   padding: 10px 15px;
   cursor: pointer;

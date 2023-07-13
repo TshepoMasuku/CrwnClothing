@@ -4,12 +4,13 @@ import { CartContext } from "../../contexts/cart.context";
 import { Outlet } from "react-router-dom";
 import { signOutUser } from "../../utils/firebase/firebase.util";
 import { ReactComponent as CrwnLogo } from "../../assets/crown.svg";
-import CartIcon from "../../components/cart-icon/cart-icon.components";
+import CartIcon from "../../components/cart-icon/cart-icon.component";
 import CartDropDown from "./../../components/cart-dropdown/cart-dropdown.component";
 import {
   NavigationContainer,
   LogoContainer,
   NavLinks,
+  NavUserName,
   NavLink,
 } from "./navigation.styles";
 
@@ -26,13 +27,11 @@ const Navigation = () => {
         </LogoContainer>
         <NavLinks>
           {currentUser?.displayName && (
-            <div>
-              Hi <br />
-              {currentUser.displayName}
-            </div>
+            <NavUserName>
+              {`Hi ${currentUser.displayName.toUpperCase()}`}
+            </NavUserName>
           )}
           <NavLink to="shop">SHOP</NavLink>
-          <NavLink to="contact">CONTACT</NavLink>
           {currentUser ? (
             <NavLink as="span" onClick={handleSignOut}>
               SIGN OUT
