@@ -1,24 +1,46 @@
 import React from "react";
 import ReactDOM from "react-dom/client";
-import { BrowserRouter } from "react-router-dom";
 import reportWebVitals from "./reportWebVitals";
-import App from "./App";
+import { BrowserRouter } from "react-router-dom";
+import { PersistGate } from "redux-persist/es/integration/react";
+import { Provider } from "react-redux";
+import { persistedStore, store } from "./store/store";
 import { UserProvider } from "./contexts/user.context";
 import { CategoriesProvider } from "./contexts/categories.context";
 import { CartProvider } from "./contexts/cart.context";
+import App from "./App";
 import "./index.scss";
+
+
+// eslint-disable-next-line
+const reduxProvider = () => {
+  return(
+    <Provider store={store}>
+      <PersistGate loading={null} persistor={persistedStore}>
+        <App />
+      </PersistGate>
+    </Provider>
+  );
+};
+
+// eslint-disable-next-line
+const contextsProvider = () => {
+  return(
+    <UserProvider>
+      <CategoriesProvider>
+        <CartProvider>
+          <App />
+        </CartProvider>
+      </CategoriesProvider>
+    </UserProvider>
+  );
+};
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
-      <UserProvider>
-        <CategoriesProvider>
-          <CartProvider>
-            <App />
-          </CartProvider>
-        </CategoriesProvider>
-      </UserProvider>
+      {reduxProvider()}
     </BrowserRouter>
   </React.StrictMode>
 );

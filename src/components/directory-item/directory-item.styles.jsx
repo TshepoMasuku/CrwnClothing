@@ -1,14 +1,15 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 export const BackgroundImage = styled.div`
   width: 100%;
   height: 100%;
   background-size: cover;
   background-position: center;
-  background-image: ${ ({imageUrl}) => `url(${imageUrl})` };
-  /* What the above string lateral is basically doing when taking ~imageUrl~ */
-  /* background-image: ${(props) => `url(${props.imageurl})`}; */
+  /* What the below string lateral is basically doing when taking the ~imageurl~ prop. */
+  background-image: ${ (props) => `url(${props.$imageurl})` };
+  background-image: ${ ({$imageurl}) => `url(${$imageurl})` };
 `;
 
 export const Body = styled.div`

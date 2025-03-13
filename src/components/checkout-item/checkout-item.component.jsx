@@ -1,5 +1,12 @@
-import React, { useContext } from "react";
-import { CartContext } from "../../contexts/cart.context";
+// import { useContext } from "react";
+// import { CartContext } from "../../contexts/cart.context";
+import { useDispatch, useSelector } from 'react-redux';
+import { selectCartItems } from "../../store/cart/cart.selector";
+import { 
+  addItemToCart, 
+  removeItemFromCart, 
+  clearItemFromCart 
+} from "../../store/cart/cart.action";
 import {
   CheckoutItemContainer,
   ImageContainer,
@@ -11,14 +18,16 @@ import {
   RemoveButton,
 } from "./checkout-item.styles";
 
+
 function CheckoutItem({ cartItem }) {
   const { imageUrl, name, price, quantity } = cartItem;
-  const { addItemToCart, removeItemFromCart, clearItemFromCart } =
-    useContext(CartContext);
+  // const {addItemToCart, removeItemFromCart, clearItemFromCart} = useContext(CartContext);
+  const dispatch = useDispatch();
+  const cartItems = useSelector(selectCartItems);
 
-  const handleRemoveItem = (cartItem) => removeItemFromCart(cartItem);
-  const handleAddItem = (cartItem) => addItemToCart(cartItem);
-  const handleClearCartItem = (cartItem) => clearItemFromCart(cartItem);
+  const handleAddItem = (cartItem) => dispatch(addItemToCart(cartItems, cartItem));
+  const handleRemoveItem = (cartItem) => dispatch(removeItemFromCart(cartItems, cartItem));
+  const handleClearCartItem = (cartItem) => dispatch(clearItemFromCart(cartItems, cartItem));
 
   return (
     <CheckoutItemContainer>

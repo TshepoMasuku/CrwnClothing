@@ -1,17 +1,22 @@
+import { Fragment, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { Fragment, useContext, useState, useEffect } from "react";
-import { CategoriesContext } from "../../contexts/categories.context";
+// import { useContext } from "react";
+// import { CategoriesContext } from "../../contexts/categories.context";
+import { useSelector } from "react-redux";
+import { selectCategoriesMap } from "../../store/categories/categories.selector";
 import ProductCard from "../../components/product-card/product-card.component";
 import { CategoryContainer, CategoryTitle } from "./category.styles";
 
+
 function Category() {
   const { category } = useParams();
-  const { categoriesMap } = useContext(CategoriesContext);
+  // const { categoriesMap } = useContext(CategoriesContext);
+  const categoriesMap = useSelector(selectCategoriesMap);
   const [products, setProducts] = useState(categoriesMap[category]);
-
+  
   useEffect(() => {
     setProducts(categoriesMap[category]);
-  }, [category, categoriesMap]);
+  }, [categoriesMap, category]);
 
   return (
     <Fragment>
@@ -22,7 +27,8 @@ function Category() {
         {products &&
           products.map((product) => (
             <ProductCard key={product.id} product={product} />
-          ))}
+          ))
+        }
       </CategoryContainer>
     </Fragment>
   );
