@@ -3,6 +3,7 @@ import { Routes, Route } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { onAuthStateChangedListener, createUserDocumentFromAuth } from "./utils/firebase/firebase.util";
 import { setCurrentUser } from "./store/user/user.action";
+import { fetchCategoriesAsync } from "./store/categories/categories.action";
 import Navigation from "./routes/navigation/navigation.component";
 import Home from "./routes/home/home.component";
 import Shop from "./routes/shop/shop.component";
@@ -31,6 +32,7 @@ const App = () => {
         createUserDocumentFromAuth(user);
       }
       dispatch(setCurrentUser(user));
+      dispatch(fetchCategoriesAsync());
     });
     return unsubscribe;
     // eslint-disable-next-line

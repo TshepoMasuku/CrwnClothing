@@ -3,6 +3,7 @@ import logger from 'redux-logger';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
+import { thunk } from 'redux-thunk';
 import { rootReducer } from './root-reducer';
 
 
@@ -19,8 +20,8 @@ const customMiddleware = () => (store) => (next) => (action) => {
   console.log("Next State :>> ", store.getState());
 };
 
-// const middlewares = [logger];
-const middlewares = [process.env.NODE_ENV === "development" && logger].filter(Boolean);
+// const middlewares = [logger, thunk];
+const middlewares = [process.env.NODE_ENV === "development" && logger, thunk].filter(Boolean);
 
 const composedEnhancers = process.env.NODE_ENV === "development" ? 
   composeWithDevTools(applyMiddleware(...middlewares)) : compose(applyMiddleware(...middlewares));
@@ -32,7 +33,8 @@ const composedEnhancers = process.env.NODE_ENV === "development" ?
 const persistConfig = {
   key: 'root',
   storage,
-  blacklist: ['user'],
+  // blacklist: ['user'],
+  whitelist: ['cart'],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);
