@@ -20,7 +20,7 @@ Crwn Clothing is a React e‑commerce prototype that showcases a modern clothing
 
 ## What I have learned
 
-- CRUD Operations: Properly managing product data in the cart and checkout page.
+- CRUD Operations: Properly managing products data in the cart component and checkout page.
 - Frontend Technologies: Built using React with styled components, filtering, and routing.
 - Authentication & Authorization: Secure user access, including login and registration using Firebase.
 - Development Tools: Used Redux for state management and SASS for styling app.
